@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>عيد ميلاد سعيد يا عبدو! 🎉</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Confetti Library -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap');
+        body { font-family: 'Cairo', sans-serif; background: #0b0f19; color: #f8fafc; }
+        .glow-title { text-shadow: 0 0 25px rgba(244, 63, 94, 0.5); }
+        .card-hover:hover { transform: translateY(-5px); transition: all 0.3s ease; }
+    </style>
+</head>
+<body class="min-h-screen pb-12 flex flex-col justify-between">
+
+    <!-- Music Player Widget -->
+    <div class="fixed top-4 left-4 z-50 bg-slate-900/90 border border-rose-500/30 p-3 rounded-2xl shadow-2xl flex items-center gap-3 backdrop-blur-md">
+        <button onclick="toggleMusic()" class="w-12 h-12 bg-gradient-to-r from-rose-500 to-purple-600 rounded-full flex items-center justify-center text-white text-xl shadow-lg hover:scale-105 transition">
+            <i class="fas fa-play" id="playIcon"></i>
+        </button>
+        <div class="text-xs">
+            <p class="font-bold text-rose-400">أغنية الصحاب 🎵</p>
+            <p class="text-slate-400" id="musicStatus">اضغط للاستماع</p>
+        </div>
+        <!-- يمكنك تغيير رابط الأغنية هنا -->
+        <audio id="bgMusic" loop src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"></audio>
+    </div>
+
+    <!-- Header / Hero -->
+    <header class="text-center py-20 px-4 relative">
+        <div class="absolute inset-0 bg-gradient-to-b from-rose-500/10 to-transparent pointer-events-none"></div>
+        <span class="bg-rose-500/20 text-rose-400 border border-rose-500/30 px-4 py-1.5 rounded-full text-sm font-bold">
+            🎂 عيد ميلاد أخويا وصاحب عمري
+        </span>
+        <h1 class="text-5xl md:text-7xl font-black mt-6 mb-4 glow-title bg-clip-text text-transparent bg-gradient-to-r from-rose-400 via-pink-400 to-purple-400">
+            كل سنة وأنت طيب يا عبدو! ❤️
+        </h1>
+        <p class="text-slate-300 text-lg max-w-xl mx-auto font-medium">
+            النهارده أحسن يوم في السنة.. عيد ميلاد السند والأخ اللي ما يتوضخش بثمن.
+        </p>
+        <button onclick="launchConfetti()" class="mt-8 bg-gradient-to-r from-rose-500 to-purple-600 px-8 py-3.5 rounded-xl font-bold text-lg shadow-xl hover:opacity-90 transition flex items-center gap-2 mx-auto">
+            <span>اضغط للاحتفال 🎉</span>
+            <i class="fas fa-gift"></i>
+        </button>
+    </header>
+
+    <!-- Main Sections -->
+    <main class="max-w-4xl mx-auto px-4 space-y-16 w-full">
+
+        <!-- Friendship Journey -->
+        <section class="bg-slate-900/60 border border-slate-800 rounded-3xl p-6 md:p-8 backdrop-blur-sm">
+            <h2 class="text-2xl font-bold text-rose-400 mb-6 flex items-center gap-2">
+                <i class="fas fa-history"></i> حكايتنا وصحوبيتنا من إمتى؟
+            </h2>
+            <div class="space-y-6 border-r-2 border-rose-500/30 pr-6 mr-2">
+                <div class="relative">
+                    <span class="absolute -right-[31px] top-1 w-4 h-4 rounded-full bg-rose-500 ring-4 ring-slate-950"></span>
+                    <h3 class="font-bold text-lg text-slate-200">بداية المعرفة والأخوة</h3>
+                    <p class="text-slate-400 text-sm mt-1">من يوم ما عرفتك وبقينا صحاب، وأنا متأكد إن ربنا رزقني بأخ مش مجرد صديق عادي. مواقف كتير مرت ولقيتك دايما في ضهري.</p>
+                </div>
+                <div class="relative">
+                    <span class="absolute -right-[31px] top-1 w-4 h-4 rounded-full bg-purple-500 ring-4 ring-slate-950"></span>
+                    <h3 class="font-bold text-lg text-slate-200">الذكريات والمواقف الجدعة</h3>
+                    <p class="text-slate-400 text-sm mt-1">ضحكنا كتير وسوا في الحلوة والمرة، ووعودنا إننا نفضل سند لبعض مهما حصل.. الصحاب الجدعان زيك هما الحقيقيين في الزمن ده.</p>
+                </div>
+                <div class="relative">
+                    <span class="absolute -right-[31px] top-1 w-4 h-4 rounded-full bg-indigo-500 ring-4 ring-slate-950"></span>
+                    <h3 class="font-bold text-lg text-slate-200">مستمرين سوا لأبعد لفل 🚀</h3>
+                    <p class="text-slate-400 text-sm mt-1">بندخل سنة جديدة من عمرك وأنا جنبك وبأذن الله نحقق كل أحلامنا سوا ونفضل أخوات طول العمر.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Photo Gallery (صوركم الحقيقية) -->
+        <section>
+            <h2 class="text-2xl font-bold text-purple-400 mb-6 text-center flex items-center justify-center gap-2">
+                <i class="fas fa-camera-retro"></i> صورنا وذكرياتنا سوا 📸
+            </h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                <!-- صورة 1 -->
+                <div class="bg-slate-900 rounded-2xl overflow-hidden border border-slate-800 card-hover">
+                    <img src="37195.heic" alt="صورة سوا" class="w-full h-56 object-cover" onerror="this.src='https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=500'">
+                    <div class="p-4 text-center">
+                        <p class="font-bold text-slate-200">أجدع صحاب ❤️</p>
+                    </div>
+                </div>
+                <!-- صورة 2 -->
+                <div class="bg-slate-900 rounded-2xl overflow-hidden border border-slate-800 card-hover">
+                    <img src="19943.jpg" alt="صورة سوا" class="w-full h-56 object-cover" onerror="this.src='https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=500'">
+                    <div class="p-4 text-center">
+                        <p class="font-bold text-slate-200">ذكريات ما تتنسيش 😃</p>
+                    </div>
+                </div>
+                <!-- صورة 3 -->
+                <div class="bg-slate-900 rounded-2xl overflow-hidden border border-slate-800 card-hover">
+                    <img src="8559.jpg" alt="صورة عبدو" class="w-full h-56 object-cover" onerror="this.src='https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=500'">
+                    <div class="p-4 text-center">
+                        <p class="font-bold text-slate-200">العمر كله يا غالي 🚀</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Personal Greeting Note -->
+        <section class="bg-gradient-to-r from-rose-600/20 to-purple-600/20 border border-rose-500/30 rounded-3xl p-8 text-center backdrop-blur-md">
+            <div class="text-4xl mb-3">⭐</div>
+            <h3 class="text-2xl font-black text-white mb-2">كلمة من القلب لعبدو</h3>
+            <p class="text-slate-300 leading-relaxed max-w-xl mx-auto">
+                كل سنة وأنت طيب يا عبدو وعقبال 1000 سنة سعادة ونجاح وخير، وربنا يديم ما بينا الأخوة والصحبة الحلوة دي دايماً.
+            </p>
+        </section>
+
+    </main>
+
+    <footer class="text-center text-slate-500 text-sm mt-16 pb-6">
+        تمت البرمجة بـ ❤️ من المهندس أحمد لصديقه عبدو
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        function launchConfetti() {
+            confetti({
+                particleCount: 150,
+                spread: 90,
+                origin: { y: 0.6 }
+            });
+        }
+
+        window.onload = function() {
+            launchConfetti();
+        };
+
+        function toggleMusic() {
+            const music = document.getElementById('bgMusic');
+            const icon = document.getElementById('playIcon');
+            const status = document.getElementById('musicStatus');
+
+            if (music.paused) {
+                music.play();
+                icon.className = 'fas fa-pause';
+                status.innerText = 'شغالة الآن 🎶';
+            } else {
+                music.pause();
+                icon.className = 'fas fa-play';
+                status.innerText = 'متوقفة';
+            }
+        }
+    </script>
+</body>
+</html>
